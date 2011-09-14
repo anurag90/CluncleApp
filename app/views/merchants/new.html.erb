@@ -1,0 +1,49 @@
+<html>
+<head>
+</head>
+<body>
+<h1>Merchant Sign in </h1>
+<%= form_for(@merchant) do |merch| %>
+<p>
+<%= merch.label :Name %><br/>
+<%= merch.text_field :Name %>
+</p>
+<p>
+<%= merch.label :UserName %><br/>
+<%= merch.text_field :UserName %>
+</p>
+<p>
+<%= merch.label:RegistrationName %><br/>
+<%= merch.text_field :RegistrationName %>
+</p>
+<p>
+<%= merch.label :BusinessName %><br/>
+<%= merch.text_field :BusinessName %>
+</p>
+<p>
+<%= merch.label :ContactPerson %><br/>
+<%= merch.text_field :ContactPerson %>
+</p>
+<p>
+<%= merch.label :PhoneNumber %><br/>
+<%= merch.text_field :PhoneNumber %>
+</p>
+<p>
+<%= merch.label :BusinessAddress %><br/>
+<%= merch.text_field :BusinessAdress %>
+</p>
+<p>
+<%= merch.label :Email %><br/>
+<%= merch.text_field :Email %>
+</p>
+<p>
+<%= merch.label :Website %><br/>
+<%= merch.text_field :Website %>
+</p>
+<p>
+<%= merch.submit "Sign up!!" %>
+</p>
+<% end %>
+
+</body>
+</html>

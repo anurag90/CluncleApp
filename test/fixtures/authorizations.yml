@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  provider: MyString
+  uid: MyString
+  merchant_id: 1
+
+two:
+  provider: MyString
+  uid: MyString
+  merchant_id: 1

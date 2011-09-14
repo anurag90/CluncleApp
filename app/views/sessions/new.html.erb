@@ -1,0 +1,15 @@
+
+<h1>Sign in Merchants!! </h1>
+
+<%= form_for(:session , :url => sessions_path) do |m| %>
+<p>
+<%= m.label :User_Name %><br/>
+<%= m.text_field :UserName %>
+</p>
+<p>
+<%= m.label :Email %><br/>
+<%= m.text_field :Email %>
+</p>
+<%= m.submit "Sign in" %>
+<% end %>
+
