@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110910165657) do
+ActiveRecord::Schema.define(:version => 20110923231018) do
+
+  create_table "add_approvalflag_to_merchants", :force => true do |t|
+    t.boolean  "Flag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "authentications", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "authorizations", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "merchant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "merchants", :force => true do |t|
     t.string   "Name"
@@ -24,6 +43,17 @@ ActiveRecord::Schema.define(:version => 20110910165657) do
     t.string   "BusinessAdress"
     t.string   "Email"
     t.string   "Website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "Flag"
+    t.string   "encrypted_password"
+    t.string   "salt"
+    t.string   "stateField"
+    t.string   "zipcode"
+  end
+
+  create_table "states", :force => true do |t|
+    t.string   "stateName"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

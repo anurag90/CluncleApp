@@ -1,0 +1,13 @@
+<% if @merchant.errors.any? %>
+<div id ="error_explanation">
+<h2><%= pluralize(@merchant.errors.count,"error")%>
+	prevented the merchant from being saved:</h2>
+<p>There were problems with the following fields :</p>
+<ul>
+<% @merchant.errors.full_messages.each do |msg| %>
+<li> <%= msg %> </li>
+<% end %>
+</ul>
+</div>
+<% end %>
+

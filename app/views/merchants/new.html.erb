@@ -1,12 +1,149 @@
 <html>
 <head>
+
+<script language="javascript" type="text/javascript">
+function validate(form)
+{
+if(validateName(document.getElementById("merchant_Name"),document.getElementById("name_missing"))==true && validateEmail(document.getElementById("merchant_Email"),document.getElementById("email_missing"))==true && validatePhone(document.getElementById("merchant_PhoneNumber"),document.getElementById("phone_missing"))==true && validateBusiness(document.getElementById("merchant_BusinessAdress"),document.getElementById("bus_missing"))==true)
+{
+//alert("world");
+return true;
+}
+else
+{
+alert("Missing fields");
+return false;
+}
+}
+
+function validateName(inputField, helpText)
+{	var regex= /^[a-zA-Z]+\s[a-zA-Z]+$/
+	if(inputField.value == "")
+	{
+		if(helpText!=null)
+		{
+	  	helpText.innerHTML = " Please enter a name ";
+	   	return false;
+		}
+	}
+	else if(regex.test(inputField.value)==false)
+		{
+			if(helpText!=null)
+			{
+	  		helpText.innerHTML = "Name should be in format of 'name lastname'";
+	   		return false;
+			}
+			
+		}
+		
+	else
+	{ 
+		if(helpText!=null)
+		{
+		helpText.innerHTML="";
+		return true;
+	
+		}
+	}
+
+}
+
+function validateEmail(inputField,helpText)
+{
+	var regexEmail=^[\w\-\_\.\d]+@[\w_]+(\.(\w{2,4}|\w{2,4}\.\w{2,4}))$
+	if(inputField.value=="")
+	{
+
+		if(helpText!=null)
+		{
+			helpText.innerHTML="Please enter an email";
+		}
+		return false
+	
+
+	}
+
+	else if(regexEmail.test(inputField.value)==false)
+	{
+		if(helpText!=null)
+		{
+			helpText.innerHTML="Please enter an email id in the format rogerwaters@yahoo.com";
+		}
+		return false
+	}
+
+	else 
+	{
+
+		if(helpText!=null)
+		{
+			helpText.innerHTML="";
+		}
+	return true
+
+	}
+}
+
+function validatePhone(inputField,helpText)
+{
+	
+	var regexPhone=/^\d{10}$/;
+
+	if(regexPhone.test(inputField.value)==false)
+	{
+	       //alert("False");
+		if(helpText!=null)
+		{
+			helpText.innerHTML="Please enter a U.S phone number";
+		}
+		return false
+	}
+
+	else 
+	{
+		//alert("TRue");
+		if(helpText!=null)
+		{
+			helpText.innerHTML="";
+		}
+		return true
+
+	}
+
+}
+
+function validateBusiness(inputField,helpText)
+{
+
+	if(inputField.value.length <2)
+	{
+		if(helpText!=null)
+		{
+			helpText.innerHTML="Address should be more than 2 characters in length";
+		}
+
+	}
+	return true;
+}
+
+function validateZip(inputField,helpText)
+{
+	alert("wwwwwwwah");
+	
+}
+
+
+
+</script>
 </head>
 <body>
 <h1>Merchant Sign in </h1>
-<%= form_for(@merchant) do |merch| %>
+<%= form_for @merchant , :html=> {:onsubmit => "return validate(this)"} do |merch| %>
+<%= render 'shared/error_messages' %>
 <p>
 <%= merch.label :Name %><br/>
-<%= merch.text_field :Name %>
+<%= merch.text_field :Name ,:onblur => "validateName(this,document.getElementById('name_missing'))" %><br/>
+<span id="name_missing" class="help"></span>
 </p>
 <p>
 <%= merch.label :UserName %><br/>
@@ -26,16 +163,30 @@
 </p>
 <p>
 <%= merch.label :PhoneNumber %><br/>
-<%= merch.text_field :PhoneNumber %>
+<%= merch.text_field :PhoneNumber, :onblur => "validatePhone(this,document.getElementById('phone_missing'))" %><br/>
+<span id ="phone_missing" class="help"></span>
 </p>
 <p>
 <%= merch.label :BusinessAddress %><br/>
-<%= merch.text_field :BusinessAdress %>
+<%= merch.text_field :BusinessAdress ,:onblur => "validateBusiness(this,document.getElementById('bus_missing'))"%><br/>
+<span id="bus_missing" class="help"></span>
+</p>
+<p>
+<%= merch.label :State_US %><br/>
+<%= merch.text_field :stateField %><br/>
+</p>
+<p>
+<%= merch.label :Zip_Code %><br/>
+<%= merch.text_field :zipcode %><br/>
+<span id="zip_format" class="help"></span>
+
 </p>
 <p>
 <%= merch.label :Email %><br/>
-<%= merch.text_field :Email %>
+<%= merch.text_field :Email, :onblur => "validateEmail(this,document.getElementById('email_missing'))" %><br/>
+<span id="email_missing" class="help"></span>
 </p>
+
 <p>
 <%= merch.label :Website %><br/>
 <%= merch.text_field :Website %>
@@ -44,6 +195,9 @@
 <%= merch.submit "Sign up!!" %>
 </p>
 <% end %>
+
+
+
 
 </body>
 </html>

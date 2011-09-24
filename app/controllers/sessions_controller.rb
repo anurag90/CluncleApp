@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
   	
         
-		merchant=Merchant.authenticate(params[:session][:Email])
+		merchant=Merchant.authenticate(params[:session][:Email],params[:session][:password])
 	
 		if merchant.nil?
   		 flash.now[:error]= "Invalid email";
